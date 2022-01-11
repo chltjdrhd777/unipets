@@ -1,7 +1,13 @@
 import React from "react";
+import Header from "components/Header";
 
-function Community() {
-  return <div>Community</div>;
+function Index() {
+  return (
+    <div>
+      <Header />
+      <div>hello</div>
+    </div>
+  );
 }
 
-export default Community;
+export default Index;

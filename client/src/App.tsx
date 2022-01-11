@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Community from "routes/Community";
 import Home from "routes/Home";
+import Community from "routes/Community";
 
 function App() {
   return (

@@ -1,26 +1,6 @@
 import React from "react";
 import { createGlobalStyle, css } from "styled-components";
 
-const GlobalMedia = css`
-  ${({ theme }) => theme.makeMedia(430)} {
-    body {
-      font-size: 2rem;
-    }
-  }
-
-  ${({ theme }) => theme.makeMedia(500)} {
-    body {
-      font-size: 2.5rem;
-    }
-  }
-
-  ${({ theme }) => theme.makeMedia(700)} {
-    body {
-      font-size: 3rem;
-    }
-  }
-`;
-
 const GlobalStyles = createGlobalStyle`
   * {
       margin: 0;
@@ -30,10 +10,12 @@ const GlobalStyles = createGlobalStyle`
 
   html {
       font-size: 62.5%;
+      scroll-behavior: smooth;
   }
   
   body {
-      font-size:1.6rem;
+      font-size: 1.6rem;
+      letter-spacing: 0.1rem;
       user-select: none;
       -webkit-user-select: none; 
       -moz-user-select: none;   
@@ -43,6 +25,7 @@ const GlobalStyles = createGlobalStyle`
   
   a {
       text-decoration: none;
+      color:black;
   }
 
   ul {
@@ -59,6 +42,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   button{
+    border:none;
+    
     &:focus{
       outline:none;
     }
@@ -85,8 +70,6 @@ const GlobalStyles = createGlobalStyle`
     justify-content: center;
     flex-direction:column;
   }
-
-  ${GlobalMedia}
 `;
 
 export default GlobalStyles;
