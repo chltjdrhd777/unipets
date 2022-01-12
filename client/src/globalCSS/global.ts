@@ -11,6 +11,21 @@ const GlobalStyles = createGlobalStyle`
   html {
       font-size: 62.5%;
       scroll-behavior: smooth;
+      overflow-x:hidden;
+
+      /* &::-webkit-scrollbar{
+        width:1rem;
+      }
+
+      &::-webkit-scrollbar-track{
+        border-left:1px solid gray;
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb{
+        background: ${({ theme }) => theme.colors.pointBlue};
+        border-radius: 5rem;
+      } */
   }
   
   body {

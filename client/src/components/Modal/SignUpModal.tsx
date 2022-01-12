@@ -1,6 +1,7 @@
 import React from "react";
-import { Backdrop } from "./index";
+import { BaseBackdrop } from "./index";
 import { useForm } from "hooks/useForm";
+import SignUpModal from ".";
 
 function Index({ setSignupOpen }: { setSignupOpen: Function }) {
   const form = useForm({
@@ -9,7 +10,11 @@ function Index({ setSignupOpen }: { setSignupOpen: Function }) {
     nickname: "",
   });
 
-  return <Backdrop onClick={() => setSignupOpen(false)} />;
+  return (
+    <>
+      <SignUpModal openHandler={setSignupOpen}>hello</SignUpModal>
+    </>
+  );
 }
 
 export default Index;

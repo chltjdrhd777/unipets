@@ -30,7 +30,7 @@ const HomeContainer = styled.div`
 
 const TextBox = styled.div`
   background-color: #555bff;
-  width: 100%;
+  width: 50%;
   height: 500px;
 `;
 
