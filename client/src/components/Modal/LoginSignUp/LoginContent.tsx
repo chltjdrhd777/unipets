@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useForm } from "hooks/useForm";
 import { ReactComponent as Logo } from "assets/images/logo/main.svg";
 import { Link } from "react-router-dom";
+import { oauthHelpers } from "utils/oauth";
 
 function Index() {
   const {
@@ -47,8 +48,12 @@ function Index() {
       <div className="btn-container flex-center-C">
         <button className="login-btn">로그인</button>
         <p>또는</p>
-        <button className="googleBtn">구글로 계속하기</button>
-        <button className="googleBtn">카카오로 계속하기</button>
+        <button className="googleBtn" onClick={oauthHelpers.googleLogin}>
+          구글로 계속하기
+        </button>
+        <button className="googleBtn" onClick={oauthHelpers.googleLogout}>
+          카카오로 계속하기
+        </button>
       </div>
     </Section>
   );

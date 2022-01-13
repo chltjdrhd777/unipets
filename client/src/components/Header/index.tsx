@@ -5,6 +5,7 @@ import { ReactComponent as Logo } from "assets/images/logo/main.svg";
 import { BaseButton } from "components/Button";
 import LoginSignupModal from "components/Modal/LoginSignUp";
 
+//FOR AUTH MODAL
 interface AuthModalOpen {
   open: boolean;
   type: "login" | "signup" | "ready";
@@ -25,6 +26,8 @@ function Index() {
     type: "ready",
   });
 
+  // when path === "/"
+  // when path is others
   const HeaderContent = () => {
     switch (pathname) {
       case "/":

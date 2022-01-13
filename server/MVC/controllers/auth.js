@@ -6,4 +6,7 @@ module.exports = {
   signOut(req, res) {
     res.send("work");
   },
+  kakaoOauth(req, res) {
+    console.log(req.body);
+  },
 };
