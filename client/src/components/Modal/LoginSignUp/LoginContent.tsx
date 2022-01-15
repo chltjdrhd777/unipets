@@ -4,6 +4,7 @@ import { useForm } from "hooks/useForm";
 import { ReactComponent as Logo } from "assets/images/logo/main.svg";
 import { Link } from "react-router-dom";
 import { oauthHelpers } from "utils/oauth";
+import { ReactComponent as NaverBtnLogo } from "assets/images/logo/naverBtnLogo.svg";
 
 function Index() {
   const {
@@ -45,15 +46,42 @@ function Index() {
         </div>
       </form>
 
+      {/* 구글, 네이버는 정식 오픈 검수요청 잊지말것 */}
       <div className="btn-container flex-center-C">
-        <button className="login-btn">로그인</button>
+        <div className="btn-wrapper login-btn flex-center-R">
+          <button className="login-btn">로그인</button>
+        </div>
+
         <p>또는</p>
-        <button className="googleBtn" onClick={oauthHelpers.googleLogin}>
-          구글로 계속하기
-        </button>
-        <button className="googleBtn" onClick={oauthHelpers.googleLogout}>
-          카카오로 계속하기
-        </button>
+
+        <div className="btn-wrapper google-btn flex-center-R">
+          <div className="logo flex-center-R">logo</div>
+          <button className="google-btn" onClick={oauthHelpers.googleLogin}>
+            Google 계정으로 계속하기
+          </button>
+        </div>
+
+        <div className="btn-wrapper kakao-btn flex-center-R">
+          <div className="logo flex-center-R">logo</div>
+          <button onClick={oauthHelpers.kakaoLogin}>카카오 계정으로 계속하기</button>
+        </div>
+
+        <div className="btn-wrapper naver-btn flex-center-R">
+          <div className="logo flex-center-R">
+            <NaverBtnLogo />
+          </div>
+          <button
+            onClick={() => {
+              window.open(
+                "https://nid.naver.com/oauth2.0/authorize?response_type=token&client_id=VYxWDMtdyXyOms1pHNDe&state=17f11f50-4ac6-4334-9fdf-ac2b8589323e&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fnaver&version=js-2.0.1",
+                "_blank",
+                "height=400,width=377,top=100,left=200,scrollbars=yes,resizable=yes"
+              );
+            }}
+          >
+            네이버 계정으로 계속하기
+          </button>
+        </div>
       </div>
     </Section>
   );
@@ -116,20 +144,59 @@ export const Section = styled.section`
     margin-top: 1rem;
     gap: 1.5rem;
 
-    & button {
+    & .btn-wrapper {
       width: 65%;
       height: 4rem;
       border-radius: 4rem;
-
-      font-size: 1.5rem;
-      font-weight: bold;
+      overflow: hidden;
+      justify-content: space-between;
+      padding: 0 2rem;
       cursor: pointer;
-      color: white;
 
+      //@ childern
+      & .logo > svg {
+        width: 4rem;
+        height: 100%;
+      }
+
+      & button {
+        font-size: 1.3rem;
+        color: white;
+        flex: 1;
+        background-color: transparent;
+        cursor: pointer;
+        line-height: 1;
+      }
+
+      //# design cases
       &.login-btn {
         background-color: ${({ theme }) => theme.colors.mainColor};
         &:hover {
           background-color: ${({ theme }) => theme.colors.pointBlue};
+        }
+      }
+
+      &.google-btn {
+        background-color: white;
+        border: 1px solid ${({ theme }) => theme.colors.grayTwo};
+
+        & > button {
+          color: black;
+          font-weight: normal;
+        }
+      }
+
+      &.kakao-btn {
+        background-color: #fee500;
+        & > button {
+          color: #000;
+        }
+      }
+
+      &.naver-btn {
+        background-color: #03c75a;
+        & > button {
+          color: white;
         }
       }
     }

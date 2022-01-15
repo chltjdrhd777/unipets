@@ -8,6 +8,6 @@ router.post("/signin", signIn);
 router.get("/signout", signOut);
 
 //# kakao
-router.post("/oauth/kakao", kakaoOauth);
+router.get("/naver", kakaoOauth);
 
 app.use("/auth", router);

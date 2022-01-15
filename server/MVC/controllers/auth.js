@@ -9,4 +9,7 @@ module.exports = {
   kakaoOauth(req, res) {
     console.log(req.body);
   },
+  naverOauth(req, res) {
+    console.log(req.params, req.query, req.route, req.path, req.url);
+  },
 };

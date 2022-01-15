@@ -1,6 +1,9 @@
+import axios from "axios";
+import { v4 as uuid } from "uuid";
+
 export const oauthHelpers = {
-  kakaoLogin() {
-    window.Kakao.Auth.login({
+  async kakaoLogin() {
+    await window.Kakao.Auth.login({
       success: function (response: any) {
         console.log(response, "response from loginsuccess");
         window.Kakao.API.request({
@@ -19,7 +22,7 @@ export const oauthHelpers = {
     });
   },
 
-  kakaoLogout() {
+  async kakaoLogout() {
     if (window.Kakao.Auth.getAccessToken()) {
       window.Kakao.API.request({
         url: "/v1/user/unlink",
@@ -43,7 +46,7 @@ export const oauthHelpers = {
     }
   },
 
-  googleLogout() {
+  async googleLogout() {
     try {
       window.gapi.GoogleAuthService.signOut().then(() => console.log("logout"));
       window.gapi.GoogleAuthService.disconnect();
@@ -51,4 +54,35 @@ export const oauthHelpers = {
       console.log(err);
     }
   },
+
+  async naverLogin() {
+    // const accessToken = window.location.href.split("access_token=")[1].split("&token_type")[0];
+    // window.opener.naver["NaverAccess"] = accessToken;
+
+    const naverInit = new window.naver.LoginWithNaverId({
+      clientId: process.env.REACT_APP_NAVER_CLIENT,
+      callbackUrl: process.env.REACT_APP_NAVER_REDIRECT,
+      isPopup: false,
+      callbackHandle: true,
+    });
+    naverInit.init();
+
+    window.addEventListener("load", function () {
+      naverInit.getLoginStatus(async function (status: boolean) {
+        if (status) {
+          let { email, nickname, profile_image } = naverInit.user;
+          if (!email || !nickname || !profile_image) {
+            alert("필수 정보제공에 동의해주세요");
+            naverInit.reprompt();
+            return;
+          }
+        }
+
+        window.opener.naver["opener"] = window.opener;
+        window.opener.naver["user"] = naverInit.user;
+        window.close();
+      });
+    });
+  },
+  async naverLogout() {},
 };
