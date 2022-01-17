@@ -32,33 +32,6 @@ function App() {
     }
   }, []);
 
-  // useEffect(() => {
-  //   try {
-  //     window.gapi.load("client", function () {
-  //       window.gapi.client
-  //         .init({
-  //           apiKey: process.env.REACT_APP_GOOGLE_APIKEY,
-  //           clientId: process.env.REACT_APP_GOOGLE_CLIENT,
-  //           scope: "https://www.googleapis.com/auth/drive.metadata.readonly",
-  //           discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/drive/v3/rest"],
-  //         })
-  //         .then(() => {
-  //           window.gapi.GoogleAuthService = window.gapi.auth2.getAuthInstance();
-  //         });
-  //     });
-  //   } catch (err) {
-  //     console.log(err, "from google");
-  //   }
-  // }, []);
-
-  // useEffect(()=>{
-  //   try{
-
-  //   }catch(err){
-  //     console.log(err,"from naver")
-  //   }
-  // },[])
-
   return (
     <Router>
       <Routes>

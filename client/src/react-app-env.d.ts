@@ -16,5 +16,6 @@ declare namespace NodeJS {
     REACT_APP_NAVER_CLIENT: string;
     REACT_APP_NAVER_CLIENT_SECRET: string;
     REACT_APP_NAVER_REDIRECT: string;
+    REACT_APP_NAVER_LOGIN_URL: string;
   }
 }

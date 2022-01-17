@@ -13,7 +13,7 @@ const colors = {
 
   lightblue: "#C5E2EE",
   starColor: "#fd4",
-  waringColor: "#ff0000",
+  waringColor: "#FF6363",
 
   grayOne: "#F7F7F7",
   grayTwo: "#E5E5E5",

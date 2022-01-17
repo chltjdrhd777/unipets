@@ -56,9 +56,6 @@ export const oauthHelpers = {
   },
 
   async naverLogin() {
-    // const accessToken = window.location.href.split("access_token=")[1].split("&token_type")[0];
-    // window.opener.naver["NaverAccess"] = accessToken;
-
     const naverInit = new window.naver.LoginWithNaverId({
       clientId: process.env.REACT_APP_NAVER_CLIENT,
       callbackUrl: process.env.REACT_APP_NAVER_REDIRECT,
@@ -77,8 +74,6 @@ export const oauthHelpers = {
             return;
           }
         }
-
-        window.opener.naver["opener"] = window.opener;
         window.opener.naver["user"] = naverInit.user;
         window.close();
       });

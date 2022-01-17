@@ -5,16 +5,7 @@ import { ReactComponent as Logo } from "assets/images/logo/main.svg";
 import { BaseButton } from "components/Button";
 import LoginSignupModal from "components/Modal/LoginSignUp";
 
-//FOR AUTH MODAL
-interface AuthModalOpen {
-  open: boolean;
-  type: "login" | "signup" | "ready";
-}
-
-export const AuthContext = createContext<{
-  authModalOpen: AuthModalOpen;
-  setAuthModalOpen: SetStateAction<any>;
-}>({
+export const AuthContext = createContext<ContextProps>({
   authModalOpen: { open: false, type: "ready" },
   setAuthModalOpen: () => {},
 });
@@ -139,4 +130,14 @@ const AuhMedia = styled(HeaderContainer)`
   ${Media}
 `;
 
+//# types
+interface AuthModalOpen {
+  open: boolean;
+  type: "login" | "signup" | "ready" | "mailbox";
+}
+
+interface ContextProps {
+  authModalOpen: AuthModalOpen;
+  setAuthModalOpen: SetStateAction<any>;
+}
 export default Index;

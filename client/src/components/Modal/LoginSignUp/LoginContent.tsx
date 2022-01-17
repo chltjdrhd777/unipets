@@ -1,16 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { useForm } from "hooks/useForm";
-import { ReactComponent as Logo } from "assets/images/logo/main.svg";
+import { useAuthForm } from "hooks/useAuthForm";
 import { Link } from "react-router-dom";
 import { oauthHelpers } from "utils/oauth";
-import { ReactComponent as NaverBtnLogo } from "assets/images/logo/naverBtnLogo.svg";
+import { ReactComponent as MainLogo } from "assets/images/logo/main.svg";
+import { ReactComponent as NaverBtnIcon } from "assets/images/logo/Naver-icon.svg";
+import { ReactComponent as GoogleBtnIcon } from "assets/images/logo/Google-icon.svg";
+import { ReactComponent as KakaoBtnIcon } from "assets/images/logo/Kakao-icon.svg";
 
 function Index() {
   const {
     values: { email, password },
     onHandleChange,
-  } = useForm({
+  } = useAuthForm({
     email: "",
     password: "",
   });
@@ -18,7 +20,7 @@ function Index() {
   return (
     <Section className="flex-center-C">
       <div className="logo-container">
-        <Logo />
+        <MainLogo />
       </div>
 
       <p className="welcom-text">
@@ -54,33 +56,41 @@ function Index() {
 
         <p>또는</p>
 
-        <div className="btn-wrapper google-btn flex-center-R">
-          <div className="logo flex-center-R">logo</div>
-          <button className="google-btn" onClick={oauthHelpers.googleLogin}>
-            Google 계정으로 계속하기
-          </button>
-        </div>
-
-        <div className="btn-wrapper kakao-btn flex-center-R">
-          <div className="logo flex-center-R">logo</div>
-          <button onClick={oauthHelpers.kakaoLogin}>카카오 계정으로 계속하기</button>
-        </div>
-
-        <div className="btn-wrapper naver-btn flex-center-R">
+        <div className="btn-wrapper google-btn flex-center-R" onClick={oauthHelpers.googleLogin}>
           <div className="logo flex-center-R">
-            <NaverBtnLogo />
+            <GoogleBtnIcon />
           </div>
-          <button
-            onClick={() => {
-              window.open(
-                "https://nid.naver.com/oauth2.0/authorize?response_type=token&client_id=VYxWDMtdyXyOms1pHNDe&state=17f11f50-4ac6-4334-9fdf-ac2b8589323e&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fnaver&version=js-2.0.1",
-                "_blank",
-                "height=400,width=377,top=100,left=200,scrollbars=yes,resizable=yes"
-              );
-            }}
-          >
-            네이버 계정으로 계속하기
-          </button>
+          <button className="google-btn">Google 계정으로 계속하기</button>
+        </div>
+
+        <div className="btn-wrapper kakao-btn flex-center-R" onClick={oauthHelpers.kakaoLogin}>
+          <div className="logo flex-center-R">
+            <KakaoBtnIcon />
+          </div>
+          <button>카카오 계정으로 계속하기</button>
+        </div>
+
+        <div
+          className="btn-wrapper naver-btn flex-center-R"
+          onClick={() => {
+            const screenWidth = window.screen.width;
+            const screenHeight = window.screen.height;
+            const popupWidth = 600;
+            const popupHeight = 800;
+            const top = screenHeight / 2 - popupHeight / 2;
+            const left = screenWidth / 2 - popupWidth / 2;
+
+            window.open(
+              process.env.REACT_APP_NAVER_LOGIN_URL,
+              "_blank",
+              `width=${popupWidth},height=${popupHeight},top=${top},left=${left},scrollbars=yes,resizable=yes`
+            );
+          }}
+        >
+          <div className="logo flex-center-R">
+            <NaverBtnIcon />
+          </div>
+          <button>네이버 계정으로 계속하기</button>
         </div>
       </div>
     </Section>
@@ -155,7 +165,7 @@ export const Section = styled.section`
 
       //@ childern
       & .logo > svg {
-        width: 4rem;
+        width: 3rem;
         height: 100%;
       }
 
