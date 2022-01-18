@@ -9,19 +9,15 @@ const path = require("path");
 //todo 4. 일단 먼저 signup으로 보낼 때, 즉 이메일로 보내기 전에 이미 해당 유저로 가입되어 있으면 이미 가입한 이메일이라고 응답한다.
 module.exports = {
   signUp(req, res) {
-    const email = req.body.email;
+    const { email, password, nickname } = req.body;
     const code = crypto.randomBytes(3).toString("hex");
 
     let emailTemplate;
 
-    ejs.renderFile(
-      path.join(__dirname, "../ejs/register.ejs"),
-      { email, code, authLink },
-      (err, data) => {
-        if (err) console.log(err);
-        emailTemplate = data;
-      }
-    );
+    ejs.renderFile(path.join(__dirname, "../ejs/register.ejs"), { email, code }, (err, data) => {
+      if (err) console.log(err);
+      emailTemplate = data;
+    });
 
     let transporter = nodemailer.createTransport({
       service: "Naver",
@@ -46,6 +42,17 @@ module.exports = {
           console.log(error);
         }
 
+        req.session[email] = {
+          code,
+          password,
+          nickname,
+          expire: Date.now() + 3 * 60 * 1000,
+        };
+
+        req.session.save();
+
+        console.log(req.session);
+
         transporter.close();
       }
     );
@@ -57,7 +64,8 @@ module.exports = {
     res.send("work");
   },
   oauthSignUp(req, res) {},
-  mailAuth(req, res) {
-    console.log(req.query);
+  mailcode(req, res) {
+    console.log(req.body, req.session);
+    res.send("got it this code");
   },
 };

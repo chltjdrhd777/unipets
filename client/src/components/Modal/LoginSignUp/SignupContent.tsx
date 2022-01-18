@@ -45,12 +45,13 @@ function Index() {
         />
         <input
           name="password"
-          type="text"
+          type="password"
+          autoComplete="on"
           value={password}
           onChange={({ target }) => onHandleChange(target.name, target.value)}
           placeholder="비밀번호"
           className={emptyChecker(empty, "password") ? "empty" : ""}
-          maxLength={7}
+          maxLength={15}
         />
 
         <input
@@ -242,5 +243,11 @@ export const Section = styled.section`
     }
   }
 `;
+
+export interface SubmitValues {
+  email: string;
+  nickname: string;
+  password: string;
+}
 
 export default Index;

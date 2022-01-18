@@ -7,7 +7,7 @@ import MailboxContent from "./MailboxContent";
 
 function LoginSignUp() {
   const {
-    authModalOpen: { type },
+    authModalOpen: { type, options },
     setAuthModalOpen,
   } = useContext(AuthContext);
 
@@ -22,7 +22,7 @@ function LoginSignUp() {
     >
       {type === "login" && <LoginContent />}
       {type === "signup" && <SignupContent />}
-      {type === "mailbox" && <MailboxContent />}
+      {type === "mailbox" && <MailboxContent submitValues={options} />}
     </BaseModal>
   );
 }

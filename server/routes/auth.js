@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { signUp, signIn, signOut, oauthSignUp, mailAuth } = require("../controllers/auth");
+const { signUp, signIn, signOut, oauthSignUp, mailcode } = require("../controllers/auth");
 
 router.post("/signup", signUp);
 router.post("/signin", signIn);
 router.get("/signout", signOut);
-router.get("/mail", mailAuth);
+router.post("/mailcode", mailcode);
 
 //# Oauth
 router.post("/oauth", oauthSignUp);

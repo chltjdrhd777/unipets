@@ -6,6 +6,7 @@ const express = require("express");
 
 const app = express();
 
+//# middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
@@ -14,6 +15,17 @@ app.use(
     origin: ["http://localhost:3000"],
     credentials: true,
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+  })
+);
+
+//# express-session
+const session = require("express-session");
+
+app.use(
+  session({
+    secret: "numberCode secret",
+    resave: false,
+    saveUninitialized: false,
   })
 );
 

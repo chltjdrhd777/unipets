@@ -6,7 +6,7 @@ import { BaseButton } from "components/Button";
 import LoginSignupModal from "components/Modal/LoginSignUp";
 
 export const AuthContext = createContext<ContextProps>({
-  authModalOpen: { open: false, type: "ready" },
+  authModalOpen: { open: false, type: "ready", options: {} },
   setAuthModalOpen: () => {},
 });
 
@@ -134,6 +134,7 @@ const AuhMedia = styled(HeaderContainer)`
 interface AuthModalOpen {
   open: boolean;
   type: "login" | "signup" | "ready" | "mailbox";
+  options?: { [key: string]: any };
 }
 
 interface ContextProps {

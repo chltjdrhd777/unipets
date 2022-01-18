@@ -13,7 +13,6 @@ export interface DataProps {
 export const signup = createAsyncThunk("auth/signup", async (data: DataProps, options) => {
   try {
     const response = await axios.post("/auth/signup", changeToString(data));
-    console.log(response, "from redux");
 
     return {
       data: response.data,

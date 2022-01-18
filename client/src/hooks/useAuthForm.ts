@@ -35,7 +35,7 @@ export function useAuthForm(initialValues: any) {
     try {
       dispatch(signup(values as DataProps));
 
-      setAuthModalOpen({ open: true, type: "mailbox" });
+      setAuthModalOpen({ open: true, type: "mailbox", options: values });
     } catch (err) {
       console.log(err, "from custom hook");
     }

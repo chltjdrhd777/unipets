@@ -49,7 +49,7 @@ export const BaseModalContent = styled.dialog`
     width: 85%;
     height: 75%;
     min-width: 0rem;
-    min-height: 0rem;
+    min-height: 50rem;
 
     & i[class~="close"] {
       font-size: 2.5rem;
